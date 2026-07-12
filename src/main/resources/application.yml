@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: ecommerce
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce_db
+    username: postgres
+    password: hobbi9900
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    enabled: true
+    change-log: 'classpath:/db/changelog/db.changelog-master.yaml'
+
+jwt:
+  secret: ${JWT_SECRET:your-super-secure-random-64-char-secret-key-here}  # env var orqali qo‘ying
+  access-token-expiration-ms: 108000000     # 15 daqiqa (access token)
+  refresh-token-expiration-ms: 604800000 # 7 kun (refresh token)
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+
+logging:
+  level:
+    org.springframework: INFO
+    org.example.ecommerce: DEBUG
+
+server:
+  port: 8081
