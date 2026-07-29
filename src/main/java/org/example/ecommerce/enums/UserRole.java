@@ -1,6 +1,6 @@
 package org.example.ecommerce.enums;
 
-public enum RoleName {
+public enum UserRole {
     ADMIN,
     USER
 }
