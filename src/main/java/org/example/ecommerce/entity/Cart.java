@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.ecommerce.entity.base.BaseEntity;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "carts")
+@SQLRestriction("deleted = false")
 public class Cart extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)

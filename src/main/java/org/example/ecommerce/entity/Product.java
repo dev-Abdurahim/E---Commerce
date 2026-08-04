@@ -3,6 +3,7 @@ package org.example.ecommerce.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.ecommerce.entity.base.BaseEntity;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.math.BigDecimal;
 
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "products")
+@SQLRestriction("deleted = false")
 public class Product extends BaseEntity {
 
     @Column(nullable = false, length = 150)

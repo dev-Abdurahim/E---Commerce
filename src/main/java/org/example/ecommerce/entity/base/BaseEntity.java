@@ -32,7 +32,7 @@ public abstract class BaseEntity  {
     @Column(nullable = false)
     private boolean deleted = false;
 
-    private void delete(){
+    public void delete(){
         this.deleted = true;
     }
     public void restore() {

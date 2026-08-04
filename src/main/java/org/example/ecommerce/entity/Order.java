@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.ecommerce.entity.base.BaseEntity;
 import org.example.ecommerce.enums.OrderStatus;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@SQLRestriction("deleted = false")
 @Table(name = "orders")
 public class Order extends BaseEntity {
 

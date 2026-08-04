@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.ecommerce.entity.base.BaseEntity;
 import org.example.ecommerce.enums.UserRole;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
+@SQLRestriction("deleted = false")
 public class User extends BaseEntity {
 
     @Column(nullable = false, unique = true, length = 50)

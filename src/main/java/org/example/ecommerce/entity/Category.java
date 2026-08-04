@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.ecommerce.entity.base.BaseEntity;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Getter
@@ -15,6 +16,7 @@ import org.example.ecommerce.entity.base.BaseEntity;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "categories")
+@SQLRestriction("deleted = false")
 public class Category extends BaseEntity {
 
     @Column(nullable = false, unique = true, length = 100)
