@@ -9,7 +9,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "Foydalanuvchi topilmadi"),
     USERNAME_ALREADY_EXISTS(HttpStatus.CONFLICT, "Bu username band"),
     INVALID_CREDENTIALS(HttpStatus.UNAUTHORIZED, "Username yoki parol noto'g'ri"),
-
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED,"Token yaroqsiz yoki mavjud emas"),
     CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "Kategoriya topilmadi"),
     CATEGORY_ALREADY_EXISTS(HttpStatus.CONFLICT, "Bu nomdagi kategoriya allaqachon mavjud"),
 
