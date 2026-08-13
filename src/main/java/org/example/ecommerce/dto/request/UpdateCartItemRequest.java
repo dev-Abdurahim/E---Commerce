@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateCartItemRequest {
 
-    @NotNull
-    @Positive
+    @NotNull(message = "Miqdor kiritilishi shart")
+    @Positive(message = "Miqdor musbat son bo'lishi kerak")
     private Integer quantity;
 }

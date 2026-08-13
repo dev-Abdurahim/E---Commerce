@@ -13,10 +13,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CartRequest {
 
-    @NotNull
+    @NotNull(message = "Mahsulot tanlanishi shart")
     private Long productId;
 
-    @NotNull
-    @Positive
+    @NotNull(message = "Miqdor kiritilishi shart")
+    @Positive(message = "Miqdor musbat son bo'lishi kerak")
     private Integer quantity;
 }

@@ -12,6 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateOrderRequest {
 
-    @NotBlank
+    @NotBlank(message = "Yetkazib berish manzili kiritilishi shart")
     private String deliveryAddress;
 }

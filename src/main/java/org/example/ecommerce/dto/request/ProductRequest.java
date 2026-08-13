@@ -17,17 +17,17 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class ProductRequest {
 
-    @NotBlank
+    @NotBlank(message = "Mahsulot nomi majburiy")
     private String name;
 
     private String description;
 
-    @NotNull
-    @DecimalMin(value = "0.0", inclusive = false)
+    @NotNull(message = "Narx kiritilishi shart")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Narx 0 dan katta bo'lishi kerak")
     private BigDecimal price;
 
-    @NotNull
-    @PositiveOrZero
+    @NotNull(message = "Miqdor kiritilishi shart")
+    @PositiveOrZero(message = "Miqdor manfiy bo'lishi mumkin emas")
     private Integer stockQuantity;
 
     @NotNull(message = "Kategoriya tanlanishi shart")
