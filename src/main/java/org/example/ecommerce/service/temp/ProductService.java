@@ -9,7 +9,7 @@ public interface ProductService {
 
     ProductResponse create(ProductRequest request);
 
-    Page<ProductResponse> getAll(Long categoryId, String search, Pageable pageable);
+    Page<ProductResponse> getAll(Long categoryId, String search, int page, int size);
 
     ProductResponse getById(Long id);
 

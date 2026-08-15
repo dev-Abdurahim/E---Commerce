@@ -12,7 +12,9 @@ import org.example.ecommerce.repository.CartRepository;
 import org.example.ecommerce.repository.OrderRepository;
 import org.example.ecommerce.repository.UserRepository;
 import org.example.ecommerce.service.temp.OrderService;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponse checkout(Long userId, CreateOrderRequest request) {
 
        Cart cart = cartRepository.findByUserId(userId)
-                .orElseThrow(() -> new ApiException(ErrorCode.EMPTY_CART));
+                .orElseThrow(() -> new ApiException(ErrorCode.CART_NOT_FOUND));
 
        if(cart.getItems().isEmpty()){
            throw new ApiException(ErrorCode.EMPTY_CART);
@@ -90,7 +91,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<OrderResponse> getMyOrders(Long userId, Pageable pageable) {
+    public Page<OrderResponse> getMyOrders(Long userId, int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
         return orderRepository.findByUserId(userId,pageable)
                 .map(orderMapper::toResponse);
     }

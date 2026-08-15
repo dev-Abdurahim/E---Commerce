@@ -12,11 +12,10 @@ import org.example.ecommerce.repository.CategoryRepository;
 import org.example.ecommerce.repository.ProductRepository;
 import org.example.ecommerce.service.temp.ProductService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-
 
 @Service
 @RequiredArgsConstructor
@@ -44,18 +43,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<ProductResponse> getAll(Long categoryId, String search, Pageable pageable) {
-        Page<Product> products;
-        if(categoryId != null){
-            products = productRepository.findByCategoryId(categoryId,pageable);
-        } else if (StringUtils.hasText(search)) {
-            products = productRepository.findByNameContainingIgnoreCase(search, pageable);
-            
+    public Page<ProductResponse> getAll(Long categoryId, String search, int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
+
+        if(search == null){
+            search = "";
         }
-        else {
-           products = productRepository.findAll(pageable);
-        }
-        return products.map(productMapper::toResponse);
+        return productRepository.search(categoryId,search,pageable)
+                .map(productMapper::toResponse);
 
     }
 
@@ -67,6 +62,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public ProductResponse update(Long id, ProductRequest request) {
         Product product = findEntityById(id);
 
@@ -84,6 +80,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Product product = findEntityById(id);
         product.delete();

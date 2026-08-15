@@ -9,7 +9,7 @@ public interface OrderService {
 
     OrderResponse checkout(Long userId, CreateOrderRequest request);
 
-    Page<OrderResponse> getMyOrders(Long userId, Pageable pageable);
+    Page<OrderResponse> getMyOrders(Long userId, int page, int size);
 
     OrderResponse getMyOrderById(Long userId,Long orderId);
 

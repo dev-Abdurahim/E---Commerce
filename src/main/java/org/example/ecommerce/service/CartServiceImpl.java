@@ -30,7 +30,7 @@ public class CartServiceImpl implements CartService {
     private final UserRepository userRepository;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public CartResponse getMyCart(Long userId) {
         return cartMapper.toResponse(findOrCreateCart(userId));
     }
@@ -56,7 +56,10 @@ public class CartServiceImpl implements CartService {
             newItem.setCart(cart);
             newItem.setProduct(product);
             newItem.setQuantity(request.getQuantity());
-            cart.getItems().add(newItem);
+
+            CartItem savedItem  = cartItemRepository.save(newItem);
+
+            cart.getItems().add(savedItem);
 
         }
         return cartMapper.toResponse(cart);
