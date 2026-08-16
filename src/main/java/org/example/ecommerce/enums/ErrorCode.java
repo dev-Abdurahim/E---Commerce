@@ -17,6 +17,8 @@ public enum ErrorCode {
     INSUFFICIENT_STOCK(HttpStatus.BAD_REQUEST, "Omborda yetarli mahsulot yo'q"),
     EMPTY_CART(HttpStatus.BAD_REQUEST, "Savatcha bo'sh, buyurtma berib bo'lmaydi"),
 
+    CART_NOT_FOUND(HttpStatus.NOT_FOUND, "Savatcha topilmadi"),
+
     CART_ITEM_NOT_FOUND(HttpStatus.NOT_FOUND, "Savatchada bunday mahsulot topilmadi"),
 
     ORDER_NOT_FOUND(HttpStatus.NOT_FOUND, "Buyurtma topilmadi"),
