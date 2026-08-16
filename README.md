@@ -81,7 +81,7 @@ users ─┬─< user_roles
  
 1. Repozitoriyni klonlang:
 ```bash
-   git clone https://github.com/your-username/e-commerce.git
+   git clone https://github.com/dev-Abdurahim/E---Commerce.git
    cd e-commerce
 ```
  
